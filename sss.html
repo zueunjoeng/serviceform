@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Sync</title>
+    <!-- jQuery 및 jQuery UI CSS 추가 -->
+
+    <style>
+        #left-calendar, #right-calendar {
+            display: inline-block;
+            vertical-align: top;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="left-calendar"></div>
+    <div id="right-calendar">
+        <input type="text" id="datepicker">
+    </div>
+
+    <!-- jQuery 및 jQuery UI JS 추가 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 왼쪽 달력을 생성
+            $("#left-calendar").datepicker({
+                onSelect: function(dateText) {
+                    // 날짜가 선택되면 오른쪽 달력에 날짜를 설정
+                    $("#datepicker").datepicker("setDate", dateText);
+                }
+            });
+
+            // 오른쪽 달력을 생성
+            $("#datepicker").datepicker();
+        });
+    </script>
+</body>
+</html>
