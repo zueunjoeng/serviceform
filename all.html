@@ -52,17 +52,15 @@
 
 
             <!-- 폼태그 -->
-            <div class="form_momdiv d-flex flex-column align-items-center justiffy-content-center">
+            <form id="myForm" action="your-server-endpoint" method="GET" class="form_momdiv d-flex flex-column align-items-center justify-content-center">
                 <div class="d-flex">       
                     <div class="form_box d-flex align-items-center">
                         <label for="calender" class="forLabel">선택일자</label>
-                        <input class="for_input_sele" type="text" id="datepicker" name="calender" placeholder="날짜를 선택하세요">
+                        <input class="for_input_sele" type="text" id="datepicker" name="calender" placeholder="날짜를 선택하세요" required>
                     </div>
                     <div class="form_box d-flex align-items-center">
-                    <!-- 희망시간 -->
-                    <label for="input2" class="forLabel">희망시간</label>
-                        <select class="for_input" id="hourSelectStart" name="hourSelect">
-                            <!-- <option value="">시간을 선택해주세요</option> -->
+                        <label for="input2" class="forLabel">희망시간</label>
+                        <select class="for_input" id="hourSelectStart" name="hourSelectStart">
                             <option value="10">10</option>
                             <option value="11">11</option>
                             <option value="12">12</option>
@@ -75,13 +73,12 @@
                             <option value="19">19</option>
                         </select>
                         <span class="mx-1 hourSelect_text">:</span>
-                        <select class="for_input" id="miuhourSelectStart" name="hourSelect">
+                        <select class="for_input" id="miuhourSelectStart" name="miuhourSelectStart">
                             <option value="00">00</option>
                             <option value="30">30</option>
                         </select>
                         <span class="mx-1 hourSelect_text">~</span>
-                        <select class="for_input" id="hourSelectEnd" name="hourSelect">
-                        <!-- <option value="">시간을 선택해주세요</option> -->
+                        <select class="for_input" id="hourSelectEnd" name="hourSelectEnd">
                             <option value="10">10</option>
                             <option value="11">11</option>
                             <option value="12">12</option>
@@ -94,81 +91,96 @@
                             <option value="19">19</option>
                         </select>
                         <span class="mx-1 hourSelect_text">:</span>
-                        <select class="for_input" id="miuhourSelectEnd" name="hourSelect">
+                        <select class="for_input" id="miuhourSelectEnd" name="miuhourSelectEnd">
                             <option value="00">00</option>
                             <option value="30">30</option>
                         </select>
+                    </div> 
                 </div> 
-            </div> 
-             <!-- 반려동물, 반려동물 수 -->
-            <div class="d-flex">
-                <div class="form_box d-flex align-items-center">
-                    <label for="petSelect" class="forLabel">반려동물</label>
-                    <select class="for_input ms-auto" id="petSelect" name="petSelect" placeholder="종류">
-                        <option value="" selected disabled hidden>종류</option>
-                        <option value="강아지">강아지</option>
-                        <option value="고양이">고양이</option>
-                        <option value="모두">모두</option>
-                    </select>
+                <!-- 반려동물, 반려동물 수 -->
+                <div class="d-flex">
+                    <div class="form_box d-flex align-items-center">
+                        <label for="petSelect" class="forLabel">반려동물</label>
+                        <select class="for_input ms-auto" id="petSelect" name="petSelect">
+                            <option value="" selected disabled hidden>종류</option>
+                            <option value="강아지">강아지</option>
+                            <option value="고양이">고양이</option>
+                            <option value="모두">모두</option>
+                        </select>
+                    </div>
+                    <div class="form_box d-flex align-items-center">
+                        <label for="petCount" class="forLabel">반려동물 수</label>
+                        <select class="for_input" id="petCount" name="petCount">
+                            <option value="">모두 몇마리인가요?</option>
+                            <option value="1">1마리</option>
+                            <option value="2">2마리</option>
+                            <option value="3">3마리</option>
+                            <option value="4">4마리</option>
+                            <option value="5+">5마리 이상</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form_box d-flex align-items-center">
-                    <label for="petCount" class="forLabel">반려동물 수</label>
-                    <select class="for_input" id="petCount" name="petCount">
-                        <option value="">모두 몇마리인가요?</option>
-                        <option value="1">1마리</option>
-                        <option value="2">2마리</option>
-                        <option value="3">3마리</option>
-                        <option value="4">4마리</option>
-                        <option value="5+">5마리 이상</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- 필요 서비스--> 
             
+                <!-- 필요 서비스 --> 
                 <div class="d-flex form_box_etc align-items-center">
                     <label for="input7" class="forLabel">필요서비스</label>
                     <div class="d-flex align-items-center justify-content-end">
-                        <span class="selectable ms-2 pb-1">#산책</span>
-                        <span class="selectable ms-1 pb-1">#목욕</span>
-                        <span class="selectable ms-1 pb-1">#건강검진</span>
-                        <span class="selectable ms-1 pb-1">#돌봄</span>
+                        <span class="selectable ms-2 pb-1" onclick="toggleService(this)">#산책</span>
+                        <span class="selectable ms-1 pb-1" onclick="toggleService(this)">#목욕</span>
+                        <span class="selectable ms-1 pb-1" onclick="toggleService(this)">#건강검진</span>
+                        <span class="selectable ms-1 pb-1" onclick="toggleService(this)">#돌봄</span>
                     </div>
                 </div>
-          
-        
-            <!-- 주소 -->
-            <div class="d-flex">
-                <div class="form_box addressinput d-flex align-items-center">
-                    <label for="input1" class="forLabel">주소</label>
-                    <input type="text" id="sample5_address" class="for_input me-3" placeholder="상세주소도 함께 입력해주세요">
-                    <button type="button" onclick="sample5_execDaumPostcode()" style="border: none; background-color: transparent;">
-                        <i class="bi bi-search"></i>
-                    </button>
+                
+                <!-- 주소 -->
+                <div class="d-flex">
+                    <div class="form_box addressinput d-flex align-items-center">
+                        <label for="sample5_address" class="forLabel">주소</label>
+                        <input type="text" id="sample5_address" class="for_input me-3" name="address" placeholder="상세주소도 함께 입력해주세요">
+                        <button type="button" onclick="sample5_execDaumPostcode()" style="border: none; background-color: transparent;">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+                    <script src="./address.js"></script>
                 </div>
-                <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-                <script src="./address.js"></script>
-            </div>
-
-
-            <!-- 보호자이름, 연락처 -->
-            <div class="d-flex">
-                <div class="form_box d-flex align-items-center">
-                    <label for="input5"  class="forLabel">보호자</label>
-                    <input  class="for_input" type="text" id="input5" name="input5" onkeypress="return isCharacterKey(event)" placeholder="성함을 적어주세요">
+            
+                <!-- 보호자 이름, 연락처 -->
+                <div class="d-flex">
+                    <div class="form_box d-flex align-items-center">
+                        <label for="input5" class="forLabel">보호자</label>
+                        <input class="for_input" type="text" id="input5" name="guardianName" onkeypress="return isCharacterKey(event)" placeholder="성함을 적어주세요" required>
+                    </div>
+                    
+                    <div class="form_box d-flex align-items-center">
+                        <label for="input6" class="forLabel">연락처</label>
+                        <input class="for_input" type="text" id="input6" name="contactNumber" onkeypress="return isNumberKey(event)" placeholder="연락처를 적어주세요" required>
+                    </div>
                 </div>
                 
-                <div class="form_box d-flex align-items-center">
-                    <label for="input6" class="forLabel">연락처</label>
-                    <input class="for_input" type="text" id="input6" name="input6" onkeypress="return isNumberKey(event)" placeholder="연락처를 적어주세요">
-                </div>
-            </div>
-            <button type="submit" class="mt-3 subbtn">구독하기</button>
-        </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-        <script src="/form.js"></script>
+                <!-- 제출 버튼 -->
+                <button type="submit" class="mt-3 subbtn">구독하기</button>
+            </form>
+            <script>
+                function toggleService(element) {
+                    // 선택된 서비스에 대해 스타일을 변경하여 선택 여부를 나타냅니다.
+                    element.classList.toggle('selected');
                 
-        </form>
+                    // 예시: 스타일을 변경하려면 CSS 클래스를 추가하거나 제거합니다.
+                    if (element.classList.contains('selected')) {
+                        element.style.backgroundColor = '#f0f0f0'; // 선택된 서비스 배경색 변경
+                        element.style.color = '#000'; // 선택된 서비스 텍스트 색상 변경
+                    } else {
+                        element.style.backgroundColor = ''; // 기본 배경색으로 되돌리기
+                        element.style.color = ''; // 기본 텍스트 색상으로 되돌리기
+                    }
+                }
+                
+                // DOMContentLoaded 이벤트를 사용하여 DOM이 완전히 로드된 후에 실행됩니다.
+                document.addEventListener("DOMContentLoaded", function() {
+                    // 필요시 초기화 코드를 여기에 추가할 수 있습니다.
+                });
+                </script>
 
         </div>
     </section>
